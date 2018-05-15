@@ -1,0 +1,241 @@
+﻿@model IEnumerable<CharityStartAtHome.Models.Blood>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    ul.breadcrumb {
+        padding: 8px 16px;
+        list-style: none;
+        background-color: #eee;
+    }
+
+        ul.breadcrumb li {
+            display: inline;
+        }
+
+            ul.breadcrumb li + li:before {
+                padding: 8px;
+                color: black;
+                content: "/\00a0";
+            }
+   
+    ul {
+        font-family: 'Arial Unicode MS';
+    }
+
+    .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+    }
+
+    hr.style-two {
+        border: 0;
+        height: 3px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #2aaf8e, rgba(0, 0, 0, 0));
+    }
+
+    .top-left {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+    }
+
+    .top-right {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+    }
+
+    .bottom-right {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+    }
+
+    .centered {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 40px;
+    }
+
+    h2 {
+        /*font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;*/
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 30px;
+    }
+
+    h3 {
+        /*font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;*/
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 30px;
+    }
+
+    p {
+        font-family: 'Arial Unicode MS';
+        font-size: 20px;
+    }
+
+    img {
+        height: 100%;
+    }
+
+    #img_container {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+    }
+
+    button {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        width: 120px;
+        height: 100px;
+        border-radius: 50%;
+    }
+ 
+    .back-to-top {
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+    }
+</style>
+<html>
+<body>
+    <div style="margin-left:40px; margin-right:40px">
+        <ul class="breadcrumb" style="margin-top:50px">
+            Your are here:
+            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+            <li style="color:black">What you can do</li>
+            <li style="color:black">Give blood</li>
+            <li style="color:black">Learn more</li>
+
+        </ul>
+    </div>
+    <div id="img_container">
+        <img src="~/Images/bloodm2.jpg" alt="Norway" style="width:100%">
+        <div class="centered">
+            <h1 style="color:white;">Blood is a priceless gift</h1>
+            <p style="color:white">The gift of blood can only come from another human being – there are no substitutes. </p>
+        </div>
+    </div>
+    <br />
+    <div class="text-center" style="margin-top:70px">
+       
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 style="margin-top:70px">Why donate blood?</h2>
+                <p>
+                    Up to 3 people’s lives can be saved with just 1 donation.
+                    There are always people in need of blood.
+                    Blood pumped by our heart and running through our veins.
+                    It cannot be artificially synthesized or be replaced by another fluid.
+                    Start donating blood periodically today, instead of waiting for a time of need and emergency.
+                    You ensure adequate blood reserves are available for you and your family
+                    (There is a feeling of deep hearted satisfaction having helped people in need).
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <h2 style="margin-top:70px">Where the Blood Goes?</h2>
+                <p>
+                    You might ask where the blood you donated go.
+                    It is first tested and processed before being given to recipients to make sure it is safe for administering.
+                    For example, Red Cell components in the blood have a life of 35 days,
+                    while platelets last for only 7 days. This shows it is crucial to have a fresh blood supply at all times,
+                    made possible through regular blood drives and healthy blood donors.
+                </p>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top:70px">
+            <div class="col-sm-6">
+                <h2>Blood donation process </h2>
+                <p>
+                    If you are thinking about donating blood, follow the following steps:
+                </p>
+                <p>Check eligibility.</p>
+                <p>Find center.</p>
+                <p>Book an appointment.</p>
+                <p>Donate</p>
+                <p>For details about what you need to do before and after donating, visit Australian Red Cross Blood Service website below.</p>
+                <div>
+
+                    <a href="http://www.donateblood.com.au/learn/before-and-after-you-donate" target="_blank" class="btn btn-success btn-lg">Visit Red Cross Center website</a>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <h2>
+                    Who can give blood?
+                </h2>
+                <p>
+                    In the broader context, you can donate blood if you are healthy without the flu, cold or illness,
+                    weigh more than 50kgs, and are 16-70 years old. However, other weighing factors like past medical history and pregnancy,
+                    considered to ensure a safe and pure blood reserve, may hinder your blood donation chances.
+                </p>
+                <p>
+                    For more details, take the eligibility quiz today provided by the Australian Red Cross Service to find out whether you are eligible to donate blood.
+                </p>
+
+                <div>
+                    <a href="http://www.donateblood.com.au/eligibility" target="_blank" class="btn btn-success btn-lg">Visit Red Cross Center website</a>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top:70px">
+            <p>Have further questions? Clear your doubts today.</p>
+            <p>Go through the list of FAQs provided by Australian Red Cross Service.</p>
+            <a style="margin-top:110px" href="http://www.donateblood.com.au/faq-list" target="_blank" class="btn btn-success btn-lg">Visit Red Cross Center website</a>
+        </div>
+        <hr class="style-two" style="width:80%; margin-top:40px">
+        <div style="margin-top:70px">
+            <h3>What are you waiting for?</h3>
+            <h3>Find the nearest donor center!</h3>
+        </div>
+    </div>
+
+
+    <div class="text-center">@Html.ActionLink("Find a blood donation center", "List", "Bloods", new { @class = "btn btn-success btn-lg" })</div>
+
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+
+</body>
+</html>
+
+<script>
+    //back to top button
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $('#back-to-top').tooltip('show');
+
+    });
+</script>

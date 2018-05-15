@@ -1,0 +1,69 @@
+
+<style>
+ 
+ </style>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+  
+
+</head>
+
+<body>
+   
+ <nav class="navbar navbar-expand-lg navbar-default navbar-fixed-top navbar-inverse" id="mainNav" >
+        <div class="container" >
+            <div class="navbar-header" >
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Do Your Bit", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li id ="Homepage" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li id ="About" class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">@Html.ActionLink("About", "About", "Home")</li>
+                    @*<li id ="Contact">@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    <li id="Clothes" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Clothm" ? "active" : "")">@Html.ActionLink("What you can do", "Clothm", "Clothes")</li>
+                    @*<li id="Blood">@Html.ActionLink("GivingBlood", "Index", "Blood")</li>*@
+                </ul>
+  
+                @*@Html.Partial("_LoginPartial")*@
+            </div>
+        </div>
+      </nav>
+ 
+ 
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+    <link href="@Url.Content("/Content/bootstrap-darkly.css")" rel="stylesheet">
+        <link href="@Url.Content("/Content/modern-business.css")" rel="stylesheet">
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @*@Scripts.Render("~/bundles/site")*@
+        @*@Styles.Render("~/Content/datepicker")
+        @Scripts.Render("~/bundles/datePicker")
+        @Scripts.Render("~/bundles/dataTables")*@
+        @RenderSection("scripts", required: false)
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="@Url.Content("/js/bootstrap.js")"></script>
+    <script src="@Url.Content("/js/modern-business.js")"></script>*@
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DonationsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Blood">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Center" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Service" Type="nvarchar(max)" />
+    <Property Name="AdditionNote" Type="nvarchar(max)" />
+    <Property Name="Openhour" Type="nvarchar(max)" />
+    <Property Name="Findme" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Cafe">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Area" Type="nvarchar(max)" />
+    <Property Name="Tradingname" Type="nvarchar(max)" />
+    <Property Name="Industry_Description" Type="nvarchar(max)" />
+    <Property Name="Latitude" Type="decimal" Precision="10" Scale="6" />
+    <Property Name="Longitude" Type="decimal" Precision="10" Scale="6" />
+  </EntityType>
+  <EntityType Name="Cloth">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Service" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Materials" Type="nvarchar(max)" />
+    <Property Name="OpenTime" Type="varchar(max)" />
+    <Property Name="State" Type="nvarchar(max)" />
+    <Property Name="Suburb" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Postcode" Type="smallint" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar(max)" />
+    <Property Name="Findme" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Viccharity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Orgname" Type="nvarchar(max)" />
+    <Property Name="Address1" Type="nvarchar(max)" />
+    <Property Name="Address2" Type="nvarchar(max)" />
+    <Property Name="Address3" Type="nvarchar(max)" />
+    <Property Name="City" Type="nvarchar(max)" />
+    <Property Name="State" Type="nvarchar(max)" />
+    <Property Name="Postcode" Type="smallint" Nullable="false" />
+    <Property Name="MainActivit" Type="nvarchar(max)" />
+    <Property Name="OtherActivity" Type="nvarchar(max)" />
+    <Property Name="Purposes" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityContainer Name="DonationsModelStoreContainer">
+    <EntitySet Name="Blood" EntityType="Self.Blood" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cafe" EntityType="Self.Cafe" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cloth" EntityType="Self.Cloth" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Viccharity" EntityType="Self.Viccharity" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

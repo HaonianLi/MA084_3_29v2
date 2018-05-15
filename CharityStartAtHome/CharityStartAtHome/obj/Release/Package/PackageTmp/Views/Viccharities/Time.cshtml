@@ -1,0 +1,200 @@
+﻿@model IEnumerable<CharityStartAtHome.Models.Viccharity>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    ul {
+        font-family: 'Arial Unicode MS';
+    }
+
+    .container {
+        position: relative;
+        text-align: center;
+        color: white;
+    }
+
+    .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+    }
+
+    .top-left {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+    }
+
+    .top-right {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+    }
+
+    .bottom-right {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+    }
+
+    .centered {
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 40px;
+    }
+
+    h2 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 30px;
+    }
+
+    p {
+        font-family: 'Arial Unicode MS';
+        font-size: 20px;
+    }
+    /*body {
+        margin-left: 40px;
+        margin-right: 40px;
+    }*/
+    img {
+        height: 100%;
+    }
+
+    #img_container {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+    }
+
+    hr.style-two {
+        border: 0;
+        height: 3px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #2aaf8e, rgba(0, 0, 0, 0));
+    }
+
+    hr.style-three {
+        border: 0;
+        height: 3px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), white, rgba(0, 0, 0, 0));
+    }
+
+    button {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        width: 120px;
+        height: 100px;
+        border-radius: 50%;
+    }
+   
+    .back-to-top {
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+    }
+
+    footer {
+        width: 100%;
+    }
+</style>
+
+<div style="margin-left:40px; margin-right:40px">
+    <ul class="breadcrumb" style="margin-top:50px">
+        Your are here:
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li style="color:black">What you can do</li>
+        <li style="color:black">Donate Time</li>
+        <li style="color:black">Learn more</li>
+
+    </ul>
+</div>
+<div id="img_container" style="width:100%;">
+    <img src="~/Images/hometime.jpg" alt="Norway" style="width:100%;">
+    @*<button>@Html.ActionLink("Find Place to give clothes", "Index", "Clothes")</button>*@
+    <div class="centered">
+        <h1 style="color:white">Gift someone your time</h1>
+
+        <p style="font-size:20px; color:white">You never know how much worth it is to someone.</p>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-2">
+        </div>
+<div class="col-sm-8" style="margin-top:70px;">
+    <div class="text-center">
+    <div>
+        <h1>Why volunteer?</h1>
+        <p>
+            The heart of a volunteer is not measured in size, but by the depth of the. Volunteering brings people of different ethnic backgrounds, professions and ages together, by enabling them to use their time and resources towards making a positive impact in the Australian community and feeling a sense of accomplishment and satisfaction at the same time.
+            It is an amalgamation of charity, networking, learning and so much more.
+            By volunteering you can commitment to make a difference in the lives of others.
+        </p>
+    </div>
+    <hr class="style-two" style="width:80%; margin-top:40px">
+    <div style="margin-top:70px">
+        <h2>Change Your Community</h2>
+        <p>Volunteering creates lasting, positive change that YOU made. This remains one of the top things a volunteer feels. It can be through a housing project in the suburbs or being vocal about issues in the community. </p>
+    </div>
+    <div style="margin-top:70px">
+        <h2>Connect with Others</h2>
+        <p>Volunteering helps you make new friends, experience teamwork and help others from wide ranging ethnic, cultural and professional backgrounds. It helps you hear their story, and share yours in the process.</p>
+    </div>
+    <div style="margin-top:70px">
+        <h2>Create New Skills</h2>
+        <p>No matter where you volunteer, you will always add to your skill set, be it hands on physical work or sitting at a desk. Life experience always helps you broaden your horizons by adding to your personality and employability.</p>
+        <hr class="style-two" style="width:80%; margin-top:40px">
+        <p style="margin-top:70px">
+            At Do Your Bit, we can match your interests and skill to suitable charity organization. You can support by:
+        </p>
+        <p>You can support by:</p>
+        <p>Volunteering in nearby charity organizations </p>
+        <p>Searching where you can volunteer by postcode </p>
+        <p>Exploring volunteering opportunity by category </p>
+    </div>
+    <hr class="style-two" style="width:80%; margin-top:40px">
+    <h2 style="margin-top:70px">Start Volunteering Today!</h2>
+</div>
+    <div class="col-sm-2">
+        </div>
+    </div>
+ </div>
+
+<div class="text-center">@Html.ActionLink("Find volunteering opportunities", "List", "Viccharities", new { @class = "btn btn-success btn-lg" })</div>
+
+<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $('#back-to-top').tooltip('show');
+
+    });
+
+</script>

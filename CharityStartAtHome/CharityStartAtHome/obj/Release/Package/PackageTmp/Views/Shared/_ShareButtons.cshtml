@@ -1,0 +1,54 @@
+﻿@{
+    string baseUrl = Request.Url.Scheme 
+                    + "://" 
+                    + Request.Url.Authority 
+                    + Request.ApplicationPath.TrimEnd('/') 
+                    + "/";
+}
+<style>
+    p {
+        font-family: 'Arial Unicode MS';
+        font-size: 20px;
+    }
+    hr.style-two {
+        border: 0;
+        height: 3px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #2aaf8e, rgba(0, 0, 0, 0));
+    }
+    </style>
+<div class="row; text-center">
+  
+    <div class="col-xs-12">
+        <p style="color:white; font-size:15px">Share or print the website</p>
+    </div>
+    <div class="col-xs-12">
+        <a type="button"
+          class="btn btn-social-icon btn-lg btn-twitter"
+           href="http://twitter.com/intent/tweet?status=@baseUrl&amp;title=@ViewBag.Title"
+           onclick="showPopup(this.href);return(false);">
+            <i class="fa fa-twitter"></i>
+</a>
+
+        <a type="button"
+          class="btn btn-social-icon btn-lg btn-facebook"
+           href="http://www.facebook.com/share.php?u=@baseUrl&amp;title=@ViewBag.Title"
+           onclick="showPopup(this.href);return(false);">
+            <i class="fa fa-facebook"></i> 
+            </a>
+
+        <a type="button" href="#" class="btn-warning btn-lg" onclick="printPage()">
+            <i class="fa fa-print">Print</i>
+        </a>
+        </div>
+      
+        
+       
+     
+      
+    </div>
+
+<script>
+    function printPage() {
+        window.print();
+    }
+</script>

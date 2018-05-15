@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection 由应用程序在 web.config 中用来访问数据库的连接字符串。" defaultValue="Data Source=(LocalDb)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\aspnet-CharityStartAtHome-20180325033622.mdf;Initial Catalog=aspnet-CharityStartAtHome-20180325033622;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Program\\5120\\MA084_4_15\\MA084_3_29v2\\CharityStartAtHome\\CharityStartAtHome\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="Charity-Web.config Connection String" description="Charity 由应用程序在 web.config 中用来访问数据库的连接字符串。" defaultValue="data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Donations.mdf;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Program\\5120\\MA084_4_15\\MA084_3_29v2\\CharityStartAtHome\\CharityStartAtHome\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Charity']/@connectionString" />
+  </parameter>
+  <parameter name="Donations-Web.config Connection String" description="Donations 由应用程序在 web.config 中用来访问数据库的连接字符串。" defaultValue="data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Donations.mdf;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Program\\5120\\MA084_4_15\\MA084_3_29v2\\CharityStartAtHome\\CharityStartAtHome\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Donations']/@connectionString" />
+  </parameter>
+  <parameter name="Donations1-Web.config Connection String" description="Donations1 由应用程序在 web.config 中用来访问数据库的连接字符串。" defaultValue="data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Donations.mdf;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Program\\5120\\MA084_4_15\\MA084_3_29v2\\CharityStartAtHome\\CharityStartAtHome\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Donations1']/@connectionString" />
+  </parameter>
+  <parameter name="Donation-Web.config Connection String" description="Donation 由应用程序在 web.config 中用来访问数据库的连接字符串。" defaultValue="data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Donations.mdf;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Program\\5120\\MA084_4_15\\MA084_3_29v2\\CharityStartAtHome\\CharityStartAtHome\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Donation']/@connectionString" />
+  </parameter>
+  <parameter name="Donation1-Web.config Connection String" description="Donation1 由应用程序在 web.config 中用来访问数据库的连接字符串。" defaultValue="data source=(LocalDB)\MSSQLLocalDB;attachdbfilename=|DataDirectory|\Donations.mdf;integrated security=True;multipleactiveresultsets=True;application name=EntityFramework" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="D:\\Program\\5120\\MA084_4_15\\MA084_3_29v2\\CharityStartAtHome\\CharityStartAtHome\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Donation1']/@connectionString" />
+  </parameter>
+</parameters>

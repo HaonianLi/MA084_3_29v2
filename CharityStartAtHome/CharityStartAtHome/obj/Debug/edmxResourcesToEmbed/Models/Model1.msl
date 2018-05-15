@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DonationsModelStoreContainer" CdmEntityContainer="DonationsEntities">
+    <EntitySetMapping Name="Bloods">
+      <EntityTypeMapping TypeName="DonationsModel.Blood">
+        <MappingFragment StoreEntitySet="Blood">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Center" ColumnName="Center" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Service" ColumnName="Service" />
+          <ScalarProperty Name="AdditionNote" ColumnName="AdditionNote" />
+          <ScalarProperty Name="Openhour" ColumnName="Openhour" />
+          <ScalarProperty Name="Findme" ColumnName="Findme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cafes">
+      <EntityTypeMapping TypeName="DonationsModel.Cafe">
+        <MappingFragment StoreEntitySet="Cafe">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Area" ColumnName="Area" />
+          <ScalarProperty Name="Tradingname" ColumnName="Tradingname" />
+          <ScalarProperty Name="Industry_Description" ColumnName="Industry_Description" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clothes">
+      <EntityTypeMapping TypeName="DonationsModel.Cloth">
+        <MappingFragment StoreEntitySet="Cloth">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Service" ColumnName="Service" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Materials" ColumnName="Materials" />
+          <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Findme" ColumnName="Findme" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Viccharities">
+      <EntityTypeMapping TypeName="DonationsModel.Viccharity">
+        <MappingFragment StoreEntitySet="Viccharity">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Orgname" ColumnName="Orgname" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="MainActivit" ColumnName="MainActivit" />
+          <ScalarProperty Name="OtherActivity" ColumnName="OtherActivity" />
+          <ScalarProperty Name="Purposes" ColumnName="Purposes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

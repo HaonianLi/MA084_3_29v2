@@ -1,0 +1,850 @@
+﻿@model PagedList.IPagedList<CharityStartAtHome.Models.Viccharity>
+
+@using PagedList.Mvc;
+<style>
+    body {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    .back-to-top {
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+    }
+
+    #map {
+        height: 600px;
+        width: 100%;
+    }
+
+    h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 40px;
+    }
+
+    h2 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 30px;
+    }
+
+    h3 {
+        font-family: 'Arial Unicode MS';
+        color: #2aaf8e;
+        font-size: 20px;
+    }
+
+    h4 {
+        font-family: 'Arial Unicode MS';
+        color: #2aaf8e;
+        font-size: 15px;
+    }
+
+    ul {
+        font-family: 'Arial Unicode MS';
+    }
+
+    p {
+        font-family: 'Arial Unicode MS';
+        font-size: 20px;
+    }
+
+    b {
+        font-family: 'Arial Unicode MS';
+        color: #2aaf8e;
+        font-size: 20px;
+    }
+
+    ul.pagination {
+        margin: 0;
+    }
+
+    .pagination li {
+        list-style-type: none;
+        float: left;
+        min-width: 15px;
+    }
+
+    input[type=text] {
+        padding-right: 100px;
+        width: 800px !important;
+    }
+
+    input[type=text] {
+        width: 70%;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-image: url('searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+        input[type=text]:focus {
+            width: 70%;
+        }
+
+
+    ul.breadcrumb {
+        padding: 8px 16px;
+        list-style: none;
+        background-color: #eee;
+    }
+
+        ul.breadcrumb li {
+            display: inline;
+        }
+
+            ul.breadcrumb li + li:before {
+                padding: 8px;
+                color: black;
+                content: "/\00a0";
+            }
+
+    .autocomplete {
+        /*the container must be positioned relative:*/
+        position: relative;
+        display: inline-block;
+    }
+
+    .autocomplete-items {
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+            .autocomplete-items div:hover {
+                /*when hovering an item:*/
+                background-color: #e9e9e9;
+            }
+
+    .autocomplete-active {
+        /*when navigating through the items using the arrow keys:*/
+        background-color: DodgerBlue !important;
+        color: #ffffff;
+    }
+</style>
+<html>
+
+<body>
+
+
+    <ul class="breadcrumb" style="margin-top:50px">
+        Your are here:
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("What you can do", "Index", "Home")</li>
+        <li>@Html.ActionLink("Donate Time", "Time", "Viccharities")</li>
+        <li style="color:black">Find now</li>
+
+    </ul>
+
+    <div class="text-center">
+        <h2>Find charity organization to donate time</h2>
+    </div>
+
+
+    @using (Html.BeginForm("List", "Viccharities", FormMethod.Get))
+    {
+        <form autocomplete="off">
+            <div class="text-center">
+                <b>
+                    I am interested in:
+                </b>
+                <select id="activity" class="btn btn-success btn-lg" name="activity" @*style="margin-left:20px"*@>
+                    <option value="" name="activity" selected="selected">
+                        choose a charity type...
+                    </option>
+
+                    <option value="Aged Care activities" name="activity">
+                        Aged Care activities
+                    </option>
+                    <option value="Animal Protection" name="activity">
+                        Animal Protection
+                    </option>
+                    <option value="Civic and advocacy activities" name="activity">
+                        Civic and advocacy activities
+                    </option>
+                    <option value="Culture and arts" name="activity">
+                        Culture and arts
+                    </option>
+                    <option value="Economic and Social Services" name="activity">
+                        Economic and Social Services
+                    </option>
+                    <option value="Education (Primary, Secondary, High, Other)" name="activity">
+                        Education (Primary, Secondary, High, Other)
+                    </option>
+                    <option value="Emergency relief" name="activity">
+                        Emergency relief
+                    </option>
+                    <option value="Employment and training" name="activity">
+                        Employment and training
+                    </option>
+                    <option value="Grant-Making Activities" name="activity">
+                        Grant-Making Activities
+                    </option>
+                    <option value="Hospital services and rehabilitation activities" name="activity">
+                        Hospital services and rehabilitation activities
+                    </option>
+                    <option value="Environmental Activities" name="activity">
+                        Environmental Activities
+                    </option>
+                    <option value="Health services delivery" name="activity">
+                        Health services delivery
+                    </option>
+                    <option value="Housing activities" name="activity">
+                        Housing activities
+                    </option>
+                    <option value="Income support and maintenance" name="activity">
+                        Income support and maintenance
+                    </option>
+                    <option value="International Activities" name="activity">
+                        International Activities
+                    </option>
+                    <option value="Law and legal services" name="activity">
+                        Law and legal services
+                    </option>
+                    <option value="Mental health and crisis intervention" name="activity">
+                        Mental health and crisis intervention
+                    </option>
+                    <option value="Political activities" name="activity">
+                        Political activities
+                    </option>
+                    <option value="Religious Activities" name="activity">
+                        Religious Activities
+                    </option>
+                    <option value="Research" name="activity">
+                        Research
+                    </option>
+                    <option value="Sport" name="activity">
+                        Sport
+                    </option>
+                    <option value="'OTHER PHILANTHROPIC" name="activity">
+                        'OTHER PHILANTHROPIC
+                    </option>
+
+                </select>
+
+
+                <div class="row" id="inputGroup" style="padding-left:40px">
+                    <p class="text-center">
+                        <input id="searchString" type="text" name="SearchString" placeholder="Search by Postcode e.g. 3000 or suburb" value="@Request["SearchString"]" autofocus style="display: inline-block; width:700px">
+                        @*Find by name: @Html.TextBox("SearchString")*@
+                        <button class="btn btn-success btn-lg" value="Search" type="submit" onSubmit="return saveComment();"> Search    <i class="glyphicon glyphicon-search"></i></button>
+                    </p>
+                </div>
+
+            </div>
+            </form>
+            }
+            <div class="text-center">
+                <h3 class="center">@ViewBag.Mystring</h3>
+                <h3 class="center">@ViewBag.Mystring2</h3>
+            </div>
+        
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <ul @*class="list-group collapse"*@ id="myUL" style="overflow-y: scroll; height:800px;">
+                        @foreach (var item in Model)
+                {
+                            <li>
+                                <div class="row list-group-item flex-column">
+
+
+
+                                    <h2 style="text-decoration:underline; font-size:26px;">@Html.ActionLink(@item.Name, "Details", new { id = item.Id })</h2>
+                                    <h3>Address:</h3>
+                                    <p>
+                                        @Html.DisplayFor(modelItem => item.Address1)
+                                        @Html.DisplayFor(modelItem => item.City),
+                                        @Html.DisplayFor(modelItem => item.Postcode)
+                                    </p>
+
+
+                                    <h3>Activity:</h3>
+                                    <p>
+                                        @Html.DisplayFor(modelItem => item.MainActivit)
+                                    </p>
+                                    <h3>Purpose:</h3>
+                                    <p>
+                                        @Html.DisplayFor(modelItem => item.Purposes)
+                                    </p>
+
+                                    <div>@Html.ActionLink("Transport, Café & Parking information", "Map", new { id = item.Id }, new { @class = "btn btn-success btn-lg" })</div>
+                                </div>
+                            </li>
+
+                        }
+
+                    </ul>
+                    <button class="btn btn-lg" onclick="showAll()" style="margin-left:20px;">Reset</button>
+                </div>
+                <div class="col-sm-6">
+                    <div class="container">
+                            <div class="row">
+
+                                <div class="col-xs-6 text-center">
+                                    <table cellpadding="8">
+                                        <tr>
+                                            <td colspan="7" valign="middle" align="center">
+                                                <span id="weather-degrees"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><span id="day1"></span></td>
+                                            <td><span id="day2"></span></td>
+                                            <td><span id="day3"></span></td>
+                                            <td><span id="day4"></span></td>
+                                            <td><span id="day5"></span></td>
+                                            <td><span id="day6"></span></td>
+                                            <td><span id="day7"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span id="icon1" style="font-size:30px;"></span></td>
+                                            <td><span id="icon2" style="font-size:30px;"></span></td>
+                                            <td><span id="icon3" style="font-size:30px;"></span></td>
+                                            <td><span id="icon4" style="font-size:30px;"></span></td>
+                                            <td><span id="icon5" style="font-size:30px;"></span></td>
+                                            <td><span id="icon6" style="font-size:30px;"></span></td>
+                                            <td><span id="icon7" style="font-size:30px;"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span id="lTemp1" class="tempLow"></span></td>
+                                            <td><span id="lTemp2" class="tempLow"></span></td>
+                                            <td><span id="lTemp3" class="tempLow"></span></td>
+                                            <td><span id="lTemp4" class="tempLow"></span></td>
+                                            <td><span id="lTemp5" class="tempLow"></span></td>
+                                            <td><span id="lTemp6" class="tempLow"></span></td>
+                                            <td><span id="lTemp7" class="tempLow"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span id="hTemp1" class="tempHigh"></span></td>
+                                            <td><span id="hTemp2" class="tempHigh"></span></td>
+                                            <td><span id="hTemp3" class="tempHigh"></span></td>
+                                            <td><span id="hTemp4" class="tempHigh"></span></td>
+                                            <td><span id="hTemp5" class="tempHigh"></span></td>
+                                            <td><span id="hTemp6" class="tempHigh"></span></td>
+                                            <td><span id="hTemp7" class="tempHigh"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="7" valign="middle" align="center">
+                                                <span id="stmt"></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    @*<div style="margin-top:20px">
+                        <a class="weatherwidget-io" href="https://forecast7.com/en/n37d81144d96/melbourne/" data-label_1="MELBOURNE" data-label_2="WEATHER" data-theme="hexellence" style="width:100%">MELBOURNE WEATHER</a>
+                    </div>*@
+                    <div>
+                        <h4 id="stmt"></h4>
+                    </div>
+                    <div id="map" style="margin-top:20px">
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("List",
+    new
+    {
+        page,
+        sortOrder = ViewBag.CurrentSort,
+        currentFilter = ViewBag.CurrentFilter,
+        activity = Request.QueryString["activity"],
+        SearchString = Request.QueryString["SearchString"]
+
+    }))
+
+            </div>
+            <div class="text-center" style="width:100%">
+                <p id="result" style="font-size:12px; color:black" class="center"></p>
+
+            </div>
+            <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+</body>
+
+</html>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $('#back-to-top').tooltip('show');
+
+    });
+
+</script>
+<script>
+    function weather() {
+
+        var location = document.getElementById("location");
+        var apiKey = 'b5720867ff3d98c666593de2ef32f09b'; // PLEASE SIGN UP FOR YOUR OWN API KEY
+        var url = 'https://api.forecast.io/forecast/';
+
+        navigator.geolocation.getCurrentPosition(success, error);
+
+        function success(position) {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+            setWeather(latitude, longitude);
+            //location.innerHTML = 'Latitude is ' + latitude + '° <br> Longitude is ' + longitude + '°';
+
+            $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function (data) {
+                var str = data.currently.temperature;
+                var celsius = ((str - 32) / 1.8).toFixed(2);
+
+                $('#temp').html('Current temperature is ' + celsius + '° C ' + 'and the weather is ' + data.currently.summary + " It's clear day, you can go and do volunteer");
+                $('#temp2').html('This week forecast: ' + data.daily.summary);
+
+                $('#icon').html(data.currently.icon);
+                $('#minutely').html(data.minutely.summary);
+            });
+        }
+
+        function error() {
+            location.innerHTML = "Unable to retrieve your location";
+        }
+
+        location.innerHTML = "Locating...";
+    }
+
+    weather();
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAByi7wbsNEkpNZtepHeoiKdThuSoJpO40&libraries=places&callback=initMap" async defer></script>
+<script type="text/javascript">
+    function initMap() {
+        var input, filter, ul, li, a, p, i, j, l, text, marker, address;
+        var arr = [];
+        var k = [];
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName('li');
+        for (i = 0; i < li.length; i++) {
+            //p = li[i].getElementsByTagName('p')[1];
+            arr.push(li[i].getElementsByTagName('p')[0]);
+            //arr.pushValues(li[i].getElementsByTagName('p')[1]);
+            ////test
+            //var address = p.innerText;
+            //var windowContent = p.innerText;
+
+        }
+        //var address = "Melbourne centeral station";
+        for (j = 0; j < arr.length; j++) {
+            //p = li[i].getElementsByTagName('p')[1];
+
+            k.push(arr[j].innerText);
+        }
+
+        var uluru = { lat: -37.8136, lng: 144.9631 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 10,
+            center: uluru,
+            gestureHandling: 'greedy'
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+        var geocoder = new google.maps.Geocoder();
+
+        var marker, x;
+
+        for (x = 0; x < k.length; x++) {
+            geocodeAddress(k[x]);
+        }
+
+        function geocodeAddress(location) {
+            geocoder.geocode({ 'address': location }, function (results, status) {
+                //alert(status);
+                if (status == google.maps.GeocoderStatus.OK) {
+
+                    //alert(results[0].geometry.location);
+                    map.setCenter(results[0].geometry.location);
+                    createMarker(results[0].geometry.location, location);
+                }
+                else {
+                    alert("some problem in geocode" + status);
+                }
+            });
+        }
+
+        function createMarker(latlng, html) {
+            var marker = new google.maps.Marker({
+                position: latlng,
+                map: map
+            });
+
+            //google.maps.event.addListener(marker, 'mouseover', function () {
+            //    infowindow.setContent(html);
+            //    infowindow.open(map, marker);
+            //});
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent(html);
+                infowindow.open(map, marker);
+                showAll();
+
+                var input2, filter, ul, li, a, p, i, text, j;
+                //input2 = location.toString();
+                filter = html.toUpperCase();
+                ul = document.getElementById("myUL");
+                li = ul.getElementsByTagName('li');
+                j = 0;
+                // Loop through all list items, and hide those who don't match the search query
+                for (i = 0; i < li.length; i++) {
+
+                    p = li[i].getElementsByTagName('p')[0];
+                    //document.getElementById("result").innerHTML = filter;
+                    //document.getElementById("result2").innerHTML = p;
+                    if (p.innerText.toUpperCase().indexOf(filter) > -1) {
+                        //      a[j].style.display = "";
+                        //document.getElementById("result2").innerHTML = p;
+                        $("#myUL").show();
+                        li[i].style.display = "";
+
+
+
+                    } else {
+                        //   a[j].style.display = "none";
+                        li[i].style.display = "none";
+
+                    }
+                }
+
+            });
+            //google.maps.event.addListener(marker, 'mouseout', function () {
+            //    infowindow.close();
+            //});
+        }
+    }
+</script>
+<script>
+    !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+</script>
+<script>
+    function showAll() {
+        // Declare variables
+        var input, filter, ul, li, a, p, i;
+        ul = document.getElementById("myUL");
+        //ul.remove();
+        li = ul.getElementsByTagName('li');
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            //a = li[i].getElementsByTagName('a');
+            li[i].style.display = "";
+
+        }
+
+        $("#myUL").show();
+        var count = $("#myUL").children().children().length;
+
+        text = "There are " + count + " results found";
+
+        //document.getElementById("result").innerHTML = text;
+
+    }
+</script>
+<script>
+    function autocomplete(inp, arr) {
+      
+        var currentFocus;
+       
+        inp.addEventListener("input", function (e) {
+            var a, b, i, val = this.value;
+           
+            closeAllLists();
+            if (!val) { return false; }
+            currentFocus = -1;
+           
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+           
+            this.parentNode.appendChild(a);
+            
+            for (i = 0; i < arr.length; i++) {
+              
+                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                   
+                    b = document.createElement("DIV");
+                  
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                   
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                  
+                    b.addEventListener("click", function (e) {
+                      
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                       
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+            }
+        });
+      
+        inp.addEventListener("keydown", function (e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+               
+                currentFocus++;
+               
+                addActive(x);
+            } else if (e.keyCode == 38) { //up
+            
+                currentFocus--;
+               
+                addActive(x);
+            } else if (e.keyCode == 13) {
+               
+                e.preventDefault();
+                if (currentFocus > -1) {
+                  
+                    if (x) x[currentFocus].click();
+                }
+            }
+        });
+        function addActive(x) {
+        
+            if (!x) return false;
+           
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+        
+            x[currentFocus].classList.add("autocomplete-active");
+        }
+        function removeActive(x) {
+            for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+            }
+        }
+        function closeAllLists(elmnt) {
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                    x[i].parentNode.removeChild(x[i]);
+                }
+            }
+        }
+     
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+    }
+
+   
+    var countries = ["3000", "Melbourne",
+        "3001",
+        "3002", "East Melbourne",
+        "3003", "West Melbourne",
+        "3004",
+        "3005", "3006", "3008", "3010", "3011", "3012", "3013", "3015", "3016", "3017", "3018", "3019", "3020", "3021", "3022", "3023", "3024", "3025",
+        "3161",
+        "3162",
+        "3163"];
+
+    
+    autocomplete(document.getElementById("searchString"), countries);
+</script>
+<script>
+    function setWeather(latitude, longitude) {
+
+        var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var date = new Date();
+        var apiKey = '8b95c3eb8ded9d41df00509bdc219e90';
+        var url = 'https://api.forecast.io/forecast/';
+        // alert(url + apiKey + "/" + latitude + "," + longitude + "?callback=?");
+        $.getJSON(url + apiKey + "/" + latitude + "," + longitude + "?callback=?", function (data) {
+
+            var celsius = ((data.currently.temperature - 32) / 1.8).toFixed(2);
+            var cel1 = ((data.daily.data[0].temperatureHigh - 32) / 1.8).toFixed(2);
+            var cel2 = ((data.daily.data[1].temperatureHigh - 32) / 1.8).toFixed(2);
+            var cel3 = ((data.daily.data[2].temperatureHigh - 32) / 1.8).toFixed(2);
+            var cel4 = ((data.daily.data[3].temperatureHigh - 32) / 1.8).toFixed(2);
+            var cel5 = ((data.daily.data[4].temperatureHigh - 32) / 1.8).toFixed(2);
+            var cel6 = ((data.daily.data[5].temperatureHigh - 32) / 1.8).toFixed(2);
+            var cel7 = ((data.daily.data[6].temperatureHigh - 32) / 1.8).toFixed(2);
+            var lcel1 = ((data.daily.data[0].temperatureLow - 32) / 1.8).toFixed(2);
+            var lcel2 = ((data.daily.data[1].temperatureLow - 32) / 1.8).toFixed(2);
+            var lcel3 = ((data.daily.data[2].temperatureLow - 32) / 1.8).toFixed(2);
+            var lcel4 = ((data.daily.data[3].temperatureLow - 32) / 1.8).toFixed(2);
+            var lcel5 = ((data.daily.data[4].temperatureLow - 32) / 1.8).toFixed(2);
+            var lcel6 = ((data.daily.data[5].temperatureLow - 32) / 1.8).toFixed(2);
+            var lcel7 = ((data.daily.data[6].temperatureLow - 32) / 1.8).toFixed(2);
+            $('#weather-degrees').text(celsius + "° C");
+            $('#lTemp1').text(lcel1 + "° C");
+            $('#lTemp2').text(lcel2 + "° C");
+            $('#lTemp3').text(lcel3 + "° C");
+            $('#lTemp4').text(lcel4 + "° C");
+            $('#lTemp5').text(lcel5 + "° C");
+            $('#lTemp6').text(lcel6 + "° C");
+            $('#lTemp7').text(lcel7 + "° C");
+            $('#hTemp1').text(cel1 + "° C");
+            $('#hTemp2').text(cel2 + "° C");
+            $('#hTemp3').text(cel3 + "° C");
+            $('#hTemp4').text(cel4 + "° C");
+            $('#hTemp5').text(cel5 + "° C");
+            $('#hTemp6').text(cel6 + "° C");
+            $('#hTemp7').text(cel7 + "° C");
+            var dt = new Date();
+            dt.setDate(date.getDay());
+            $('#day1').text(weekdays[date.getDay()]);
+            $('#day2').text(weekdays[dt.getDay()]);
+            dt.setDate(date.getDay() + 1);
+            $('#day3').text(weekdays[dt.getDay()]);
+            dt.setDate(date.getDay() + 2);
+            $('#day4').text(weekdays[dt.getDay()]);
+            dt.setDate(date.getDay() + 3);
+            $('#day5').text(weekdays[dt.getDay()]);
+            dt.setDate(date.getDay() + 4);
+            $('#day6').text(weekdays[dt.getDay()]);
+            dt.setDate(date.getDay() + 5);
+            $('#day7').text(weekdays[dt.getDay()]);
+            $('#weather-icon').removeClass();
+            var stmt = data.currently.icon;
+            if (stmt = "clear-day") { $("#stmt").text("It's a good day today to do your bit") }
+            else if (stmt = "clear-night") { $("#stmt").text("It's clear night, you can do your bit") }
+            else if (stmt = "rain") { $("#stmt").text("It's rainy outside, don't forget your umbrella") }
+            else if (stmt = "snow") { $("#stmt").text("It's snowy out, you can go tomorrow to do your bit") }
+            else if (stmt = "sleet") { $("#stmt").text("Weather is sleety, you can go tomorrow to do your bit.") }
+            else if (stmt = "wind") { $("#stmt").text("It's clear day, you can go and do your bit") }
+            else if (stmt = "fog") { $("#stmt").text("It's clear day, you can go and do your bit") }
+            else if (stmt = "cloudy") { $("#stmt").text("Its cloudy out, you can go and do your bit.") }
+            else if (stmt = "partly-cloudy-day") { $("#stmt").text("Its cloudy out, you can go and do your bit.") }
+            else if (stmt = "partly-cloudy-night") { $("#stmt").text("Its cloudy out, you can go do your bit.") }
+            //$("#icon1").addClass("ion-ios-sunny-outline");
+            for (var i = 0; i < data.daily.data.length; i++) {
+                var icon = "#icon" + (i + 1);
+                switch (data.daily.data[i].icon) {
+                    case "clear-day":
+                        $(icon).addClass("ion-ios-sunny-outline");
+                        break;
+                    case "clear-night":
+                        $(icon).addClass("ion-ios-moon-outline");
+                        break;
+                    case "rain":
+                        $(icon).addClass("ion-ios-rainy-outline");
+                        break;
+                    case "snow":
+                        $(icon).addClass("ion-ios-snowy");
+                        break;
+                    case "sleet":
+                        $(icon).addClass("ion-ios-rainy-outline");
+                        break;
+                    case "wind":
+                        $(icon).addClass("ion-ios-cloudy-outline");
+                        break;
+                    case "fog":
+                        $(icon).addClass("ion-ios-cloudy");
+                        break;
+                    case "cloudy":
+                        $(icon).addClass("ion-ios-cloudy-outline");
+                        break;
+                    case "partly-cloudy-day":
+                        $(icon).addClass("ion-ios-partlysunny-outline");
+                        break;
+                    case "partly-cloudy-night":
+                        $(icon).addClass("ion-ios-cloudy-night-outline");
+                        break;
+                }
+            }
+
+        });
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

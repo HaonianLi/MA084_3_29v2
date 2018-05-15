@@ -1,0 +1,471 @@
+﻿@model CharityStartAtHome.Models.Cloth
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 30px;
+        margin-left: 20px;
+    }
+
+    body {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    h2 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 30px;
+        margin-left: 20px;
+    }
+
+    h3 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        margin-left: 20px;
+    }
+
+    h4 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        margin-left: 20px;
+    }
+
+    p {
+        font-family: 'Arial Unicode MS';
+    }
+    label {
+        font-family: 'Arial Unicode MS';
+        font-size: 15px;
+    }
+    .back-to-top {
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+    }
+
+    /*ul.breadcrumb {
+        padding: 8px 16px;
+        list-style: none;
+        background-color: #eee;
+    }
+
+        ul.breadcrumb li {
+            display: inline;
+        }
+
+            ul.breadcrumb li + li:before {
+                padding: 8px;
+                color: black;
+                content: "/\00a0";
+            }*/
+
+    /*ul.breadcrumb li a {
+                color: green;
+            }*/
+
+
+    #map {
+        height: 600px;
+    }
+
+    #Dropdown {
+        color: black;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: orange;
+        padding: 5px;
+        border: 1px solid blue;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+    }
+
+    #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        /*padding: 5px;*/
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+    }
+
+    #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+    }
+
+        #right-panel select, #right-panel input {
+            font-size: 15px;
+        }
+
+        #right-panel select {
+            width: 100%;
+        }
+
+        #right-panel i {
+            font-size: 12px;
+        }
+
+    #right-panel {
+        height: 100%;
+        /*float: ;*/
+        width: 80%;
+        overflow: auto;
+    }
+
+    /*#map {
+        margin-right: 400px;
+    }*/
+
+    #floating-panel {
+        background-color: transparent;
+        padding: 1px;
+        font-size: 14px;
+        font-family: Arial;
+        border: 1px solid #ccc;
+        /*box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);*/
+        display: none;
+    }
+
+    dt {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 15px;
+        margin-left: 20px;
+    }
+
+    dd {
+        font-family: 'Arial Unicode MS';
+        font-size: 20px;
+    }
+
+    hr.style-two {
+        border: 0;
+        height: 3px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #2aaf8e, rgba(0, 0, 0, 0));
+    }
+
+    ul {
+        font-family: 'Arial Unicode MS';
+    }
+</style>
+
+<ul class="breadcrumb" style="margin-top:50px">
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("What you can do", "Index", "Home")</li>
+    <li>@Html.ActionLink("Donate clothes", "Clothm", "Clothes")</li>
+    <li>@Html.ActionLink("Find now", "List", "Clothes")</li>
+    <li style="color:black">Transport, Café & Parking information</li>
+    <li class="pull-right"><a href="#" onclick="history.go(-1)"><< previous page</a></li>
+</ul>
+
+<div class="text-center">
+    <h2>Transport, Café & Parking information of @Html.DisplayFor(model => model.Name)</h2>
+    @*<h2>@Html.DisplayFor(model => model.Name)</h2>*@
+</div>
+<div class="row">
+    <div class="col-sm-3">
+    </div>
+
+    <div class="col-sm-8" style="margin-top:40px" >
+        <div class="row">
+           <div class="text-center">
+            <h4 >@Html.DisplayNameFor(model => model.Address)</h4> <label id="address">@Html.DisplayFor(model => model.Address) @Html.DisplayFor(model => model.Suburb), @Html.DisplayFor(model => model.Postcode)</label>
+        </div>
+    </div>
+    <div class="col-sm-3">
+    </div>
+</div>
+    </div>
+<div class="text-center">
+    <h1 id="result"></h1>
+
+
+</div>
+
+
+<div id="floating-panel">
+    <select id="mode" class="btn btn-success">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="TRANSIT">Transit</option>
+    </select>
+</div>
+<div class="text-center">
+    <hr class="style-two" style="width:80%; margin-top:40px">
+    
+</div>
+<div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-8">
+
+        <div id="map"></div>
+        <div id="right-panel"></div>
+    </div>
+    <div class="col-sm-2">
+    </div>
+</div>
+<div id="out"></div>
+<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button"  data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+
+<script>
+
+    var final_latitude = 0;
+    var final_longitude = 0;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError, {
+            maximumAge: 0
+        });
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+    function showPosition(position) {
+        var lati = position.coords.latitude;
+        final_latitude = lati;
+        var longi = position.coords.longitude;
+        final_longitude = longi;
+
+    }
+
+
+    function showError(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                alert("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                alert("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("An unknown error occurred.");
+                break;
+        }
+    }
+
+
+
+    var map;
+
+    function initMap() {
+
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+       
+        var address = $("#address").text().toString();
+        var pyrmont = { lat: -33.866, lng: 151.196 };
+        var geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status === 'OK') {
+                map = new google.maps.Map(document.getElementById('map'), {
+                    center: results[0].geometry.location,
+                    zoom: 17,
+                    gestureHandling: 'greedy'
+                });
+
+
+                var bounds = new google.maps.LatLngBounds();
+                directionsDisplay.setMap(map);
+                directionsDisplay.setPanel(document.getElementById('right-panel'));
+
+                var control = document.getElementById('floating-panel');
+                control.style.display = 'block';
+                map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+
+                calculateAndDisplayRoute(directionsService, directionsDisplay);
+                document.getElementById('mode').addEventListener('change', function () {
+                    calculateAndDisplayRoute(directionsService, directionsDisplay);
+                });
+
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+
+
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: results[0].geometry.location,
+                radius: 500,
+                type: ['cafe']
+            }, processResults);
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: results[0].geometry.location,
+                radius: 500,
+                type: 'parking'
+            }, processResults2);
+        });
+
+       
+       
+        //setStart();
+
+    }
+
+  
+
+
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var selectedMode = document.getElementById('mode').value;
+         var start = new google.maps.LatLng(final_latitude, final_longitude);
+         var end = $("#address").text();
+         //var start = "Caulfield north monash caulfield campus";
+        
+
+        directionsService.route({
+            origin: start,
+            destination: end,
+            travelMode: selectedMode
+        }, function (response, status) {
+            if (status === 'OK') {
+                directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+
+
+
+    }
+
+
+    //var infowindow;
+    // display the cafe restaurant point
+    function processResults(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+            }
+        }
+    }
+
+    //create the point for cafe near by
+
+
+    function createMarker(place) {
+        var infowindow;
+        var service = new google.maps.places.PlacesService(map);
+        var image = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+        };
+        infowindow = new google.maps.InfoWindow();
+        var placeLoc = place.formatted_address;
+
+        var marker = new google.maps.Marker({
+            map: map,
+            icon: image,
+            position: place.geometry.location,
+            animation: google.maps.Animation.DROP
+        });
+
+        //google.maps.event.addListener(marker, 'click', function () {
+        //    infowindow.setContent(place.name);
+        //    infowindow.open(map, this);
+        //});
+
+
+        var request = { reference: place.reference };
+        service.getDetails(request, function (details, status) {
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent(details.name + "<br />" + details.formatted_address + "<br />" + details.website + "<br />" + "rate: " + details.rating + "<br />" + details.formatted_phone_number);
+                infowindow.open(map, this);
+            });
+            //google.maps.event.addListener(marker, 'dbclick', function () {
+            //    //infowindow.setContent(details.name + "<br />" + details.formatted_address + "<br />" + details.website + "<br />" + details.rating + "<br />" + details.formatted_phone_number);
+            //    infowindow.close(map, this);
+            //});
+        });
+    }
+
+    function processResults2(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker2(results[i]);
+            }
+        }
+    }
+    function createMarker2(place) {
+        var infowindow;
+        var service = new google.maps.places.PlacesService(map);
+        var image = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+        };
+        infowindow = new google.maps.InfoWindow();
+        var placeLoc = place.formatted_address;
+
+        var marker = new google.maps.Marker({
+            map: map,
+            icon: image,
+            position: place.geometry.location,
+            animation: google.maps.Animation.DROP
+        });
+
+
+
+        var request = { reference: place.reference };
+        service.getDetails(request, function (details, status) {
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent(details.name + "<br />");
+                infowindow.open(map, this);
+            });
+
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $('#back-to-top').tooltip('show');
+
+    });
+</script>
+@*<script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAByi7wbsNEkpNZtepHeoiKdThuSoJpO40&callback=initMap">
+    </script>*@
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAByi7wbsNEkpNZtepHeoiKdThuSoJpO40&libraries=places&callback=initMap" async defer></script>
+

@@ -1,0 +1,153 @@
+﻿
+
+@{
+    ViewBag.Title = "About Us";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<style>
+    .container {
+        position: relative;
+        text-align: center;
+        color: white;
+    }
+    .back-to-top {
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+    }
+    .bottom-left {
+        position: absolute;
+        bottom: 8px;
+        left: 16px;
+    }
+
+    .top-left {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+    }
+
+    .top-right {
+        position: absolute;
+        top: 8px;
+        right: 16px;
+    }
+
+    .bottom-right {
+        position: absolute;
+        bottom: 8px;
+        right: 16px;
+    }
+
+    .centered {
+        position: absolute;
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 50px;
+    }
+
+    h2 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: white;
+        font-size: 35px;
+    }
+
+    p {
+        font-family: 'Arial Unicode MS';
+        font-size: 20px;
+    }
+
+    img {
+        height: 100%;
+    }
+
+    #img_container {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+    }
+
+    button {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        width: 120px;
+        height: 100px;
+        border-radius: 50%;
+    }
+    /*button {
+        background-color: white;
+        color: black;
+        border: 2px solid #008CBA;
+    }
+        */
+    /*button:hover {
+            background-color:paleturquoise;
+            color:black;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;*/
+</style>
+
+
+<html>
+<body>
+    <div id="img_container">
+        <img src="~/Images/homepage1.jpg" alt="Norway" style="width:100%;">
+        @*<button>@Html.ActionLink("Find Place to give clothes", "Index", "Clothes")</button>*@
+        <div class="centered">
+            @*<h2>Helping you find a way to give back to your community,</h2>*@
+            <h2 >No act of kindness is ever wasted</h2>
+            <p style="color:white">Help make this world a better place to live in.</p>
+        </div>
+    </div>
+    <br />
+<div class="row">
+    <div class="col-sm-1">
+        </div>
+    <div class ="col-sm-10"style="margin-top:20px">
+        <div>
+            <p style="font-size:20px">
+                Charity has been attributed as helping the underprivileged, which includes a wide range of products. The term charity is often misinterpreted. Studies show that majority of people think of charity in terms of donating money. However, charity generally means the voluntary giving of help; help in terms of giving one’s time to someone or donating one’s things. Though public donations are necessary to support people in need, where government funding is limited, charity in any form can help a person live a better life. According to research, charity organizations are struggling to raise more help from the public to help the needy and they are facing a declining trend.
+            </p>
+            <p style="font-size:20px">
+                Do your Bit is designed to encourage people who are willing to donate their old clothes, give blood and donate time as volunteer, instead of money, to the community where they live.  Do your Bit provides an all in one platform – to help you conveniently gain information about four different ways of helping your community without touching your bank balance. Our aim is to raise community awareness of how charity begins at home. Our purpose is to assist you in finding a way you can help people around you by listing all the necessary information. Do you Bit is designed to let young people like you participate in their community charity and help people around them. By using our website, you can easily find a way to give back to your community, to make this world a better place to live in.
+            </p>
+        </div>
+    </div>
+    <div class="col-sm-1">
+    </div>
+    </div>
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+      
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $('#back-to-top').tooltip('show');
+
+    });
+</script>
+

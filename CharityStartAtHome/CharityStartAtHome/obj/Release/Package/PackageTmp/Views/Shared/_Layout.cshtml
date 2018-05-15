@@ -1,0 +1,302 @@
+﻿<!DOCTYPE html>
+
+<style>
+    body {
+        padding-top: 70px;
+    }
+    i {
+        color:white;
+        width:5%;
+    }
+    #navbar {
+        position: fixed;
+        top: 0;
+        z-index: 9999;
+        height: 50px;
+        width: 100%;
+        background: transparent;
+        color: #000000;
+        line-height: 50px;
+        -webkit-transition: height .5s, line-height .5s; /* Safari */
+        transition: height .5s, line-height .5s;
+    }
+    .scrolled-nav .site-title {
+        color: #0ed1a9 !important;
+        transition: color 1s ease 0s !important;
+        font-size: 16px;
+    }
+    .scrolled-nav {
+        background-color: #000000 !important;
+        transition: color 1s ease 0s !important;
+        height: 50px !important;
+        line-height: 50px !important;
+    }
+  
+    .navbar .li {
+        height: 80px;
+    }
+    .scrolled-nav .li {
+        color: #000000 !important;
+        transition: color 1s ease 0s !important;
+        font-size: 50px !important;
+    }
+ 
+    .dropdown-submenu {
+        position: relative;
+    }
+
+        .dropdown-submenu > .dropdown-menu {
+            top: 0;
+            left: 100%;
+            margin-top: -6px;
+            margin-left: -1px;
+            -webkit-border-radius: 0 6px 6px 6px;
+            -moz-border-radius: 0 6px 6px;
+            border-radius: 0 6px 6px 6px;
+        }
+
+        .dropdown-submenu:hover > .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-submenu > a:after {
+            display: block;
+            content: " ";
+            float: right;
+            width: 0;
+            height: 0;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 5px 0 5px 5px;
+            border-left-color: #2aaf8e;
+            margin-top: 5px;
+            margin-right: -10px;
+        }
+
+        .dropdown-submenu:hover > a:after {
+            border-left-color: #2aaf8e;
+        }
+
+        .dropdown-submenu.pull-left {
+            float: none;
+        }
+
+            .dropdown-submenu.pull-left > .dropdown-menu {
+                left: -100%;
+                margin-left: 10px;
+                -webkit-border-radius: 6px 0 6px 6px;
+                -moz-border-radius: 6px 0 6px 6px;
+                border-radius: 6px 0 6px 6px;
+            }
+
+    .navbar.solid {
+        background-color: #000000;
+        transition: background-color 1s ease 0s;
+        box-shadow: 0 0 100px grey;
+
+    }
+
+    .navbar-brand {
+        color: #C57ED3;
+        transition: color 1s ease 0s;
+    }
+    .solid .li {
+        color: #000000;
+        transition: color 1s ease 0s;
+    }
+        .solid .li .a {
+            color: #000000;
+            transition: color 1s ease 0s;
+        }
+   
+</style>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Do your bit - @ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @*@Styles.Render("~/Content/themes/base/css", "~/Content/css")*@
+    <!-- Bootstrap -->
+    <link href="@Url.Content("/Content/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("/Content/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("/Content/modern-business.css")" rel="stylesheet">
+    <link href="@Url.Content("/Content/style.css")" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" media="screen and (min-width: 900px)" href="widescreen.css">
+    <link rel="stylesheet" media="screen and (max-width: 600px)" href="smallscreen.css">
+
+   
+</head>
+
+<body>
+  
+        <nav class="navbar navbar-dark  navbar-fixed-top" role="navigation" id="navbar">
+            <div class="container">
+                <div class="navbar-header">
+                    <button style ="color:white" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <div style="font-family:'Arial Unicode MS'; font-size:35px; color:#2aaf8e" class="site-title; pull-left">DoYourBit</div>
+                </div>
+               
+                
+                    <div class="navbar-collapse collapse pull-right">
+                       <ul class="nav navbar-nav navbar-collapse pull-right">
+                        <li id="Homepage" style="font-family:'Arial Unicode MS'; color:#000000;  font-size:20px" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li id="About" style="font-family:'Arial Unicode MS', sans-serif;font-size:20px" class="@(ViewContext.RouteData.Values["Action"].ToString() == "About" ? "active" : "")">@Html.ActionLink("About us", "About", "Home")</li>
+                        <li class="dropdown" >
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family:'Arial Unicode MS'; font-size:20px ">
+                                What you can do
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown-submenu">
+                                    <a href="#" style="font-family:'Arial Unicode MS'; font-size:20px" >Donate Clothes</a>
+                                    <ul class="dropdown-menu">
+                                        <li id="cloth" style="font-family:'Arial Unicode MS'; font-size:20px" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Clothm" ? "active" : "")">@Html.ActionLink("Learn more", "Clothm", "Clothes")</li>
+                                        <li id="list1" style="font-family:'Arial Unicode MS'; font-size:20px" class="@(ViewContext.RouteData.Values["Action"].ToString() == "List" ? "active" : "")">@Html.ActionLink("Find now", "List", "Clothes")</li>
+
+                                    </ul>
+                                </li>
+                              
+                                <li class="dropdown-submenu">
+                                    <a href="#" style="font-family:'Arial Unicode MS';font-size:20px">Donate Time</a>
+                                    <ul class="dropdown-menu">
+                                        <li id="time" style="font-family:'Arial Unicode MS'; font-size:20px" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Time" ? "active" : "")">@Html.ActionLink("Learn more", "Time", "Viccharities")</li>
+                                        <li id="list2" style="font-family:'Arial Unicode MS'; font-size:20px" class="@(ViewContext.RouteData.Values["Action"].ToString() == "List" ? "active" : "")">@Html.ActionLink("Find now", "List", "Viccharities")</li>
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown-submenu">
+                                    <a href="#" style="font-family:'Arial Unicode MS';font-size:20px">Give Blood</a>
+                                    <ul class="dropdown-menu">
+                                        <li id="time" style="font-family:'Arial Unicode MS'; font-size:20px" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Bloodm" ? "active" : "")">@Html.ActionLink("Learn more", "Bloodm", "Bloods")</li>
+                                        <li id="list2" style="font-family:'Arial Unicode MS'; font-size:20px" class="@(ViewContext.RouteData.Values["Action"].ToString() == "List" ? "active" : "")">@Html.ActionLink("Find now", "List", "Bloods")</li>
+
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            
+                        </li>
+                          <li>
+                              <a id="google_translate_element" value="translat"></a>
+                              </li>
+                    </ul>
+                        
+                    </div>
+
+               
+            </div>
+        </nav>
+
+    @RenderBody()
+
+    <div class="container" style="background-color:#2aaf8e; margin-top:100px; width:100%;">
+
+        <hr>
+
+        <footer style="width:100%;">
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+            @*<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />*@
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.10.1/bootstrap-social.css" rel="stylesheet">
+
+            <div>
+                <div >
+                    <div class="text-center">
+                        <p style="color:azure">Copyright &copy; DoYourBit 2018</p>
+                        </div>
+                     
+                        @Html.Partial("_ShareButtons")
+                      
+
+                    </div>
+            </div>
+        </footer>
+
+    </div>
+  
+    <!-- /.container -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="@Url.Content("/js/bootstrap.js")"></script>
+    <script src="@Url.Content("/js/modern-business.js")"></script>
+    <script src="@Url.Content("/js/jquery.min.js")"></script>
+    <script src="@Url.Content("/js/bootstrap.min.js")"></script>
+    
+
+        <script>
+         
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+       
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                myDropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            var scroll_start = 0;
+            var startchange = $('#navbar');
+            var offset = startchange.offset();
+            if (startchange.length) {
+                $(document).scroll(function () {
+                    scroll_start = $(this).scrollTop();
+                    if ($(this).scrollTop() > 200) {
+                        $('.navbar').addClass('solid');
+                    } else {
+                        $('.navbar').removeClass('solid');
+                    }
+                });
+            }
+        });
+      
+        </script>
+    <script>
+        $(document).ready(function () {
+            var scrollTop = 0;
+            $(window).scroll(function () {
+                scrollTop = $(window).scrollTop();
+                $('.counter').html(scrollTop);
+
+                if (scrollTop >= 100) {
+                    $('#navbar').addClass('scrolled-nav');
+                } else if (scrollTop < 100) {
+                    $('#navbar').removeClass('scrolled-nav');
+                }
+
+            });
+
+        });
+        </script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
+
+
+

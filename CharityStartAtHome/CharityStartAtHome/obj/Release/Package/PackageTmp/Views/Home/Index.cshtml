@@ -1,0 +1,328 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<style>
+    h1 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 40px;
+    }
+
+    h2 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 35px;
+    }
+
+    h3 {
+        font-family: "Arial Black", Gadget, sans-serif;
+        color: #2aaf8e;
+        font-size: 25px;
+    }
+
+    p {
+        font-family: 'Arial Unicode MS';
+        font-size: 20px;
+    }
+
+    img {
+        height: 100%;
+    }
+
+    .carousel {
+        height: 100%;
+    }
+
+    .back-to-top {
+        cursor: pointer;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+    }
+
+    centered-b {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        right: 50%;
+    }
+
+    .float-button1 {
+        position: fixed;
+        height: 90px;
+        width: 40px;
+        top: 65%;
+        right: 130px;
+    }
+
+    .float-button2 {
+        position: fixed;
+        height: 90px;
+        width: 40px;
+        top: 65%;
+        right: 100px;
+    }
+
+    .float-button3 {
+        position: fixed;
+        height: 90px;
+        width: 40px;
+        top: 65%;
+        right: 80px;
+    }
+
+    hr.style-two {
+        border: 0;
+        height: 3px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #2aaf8e, rgba(0, 0, 0, 0));
+    }
+
+    hr.style-three {
+        border: 0;
+        height: 3px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), white, rgba(0, 0, 0, 0));
+    }
+
+    hr.style-eight {
+        overflow: visible; /* For IE */
+        padding: 0;
+        border: none;
+        border-top: medium double #333;
+        color: #2aaf8e;
+        text-align: center;
+    }
+
+        hr.style-eight:after {
+            content: "§";
+            display: inline-block;
+            position: relative;
+            top: -0.7em;
+            font-size: 1.5em;
+            padding: 0 0.25em;
+            background: white;
+        }
+    /*.carousel .item.left img {
+        width: 100% !important;
+    }*/
+
+
+    #box span {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    #box img {
+        border: 1px solid #ccc;
+    }
+</style>
+<style type="text/css">
+    a.my-class {
+        color: white;
+    }
+</style>
+
+
+<html>
+<body>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="~/Images/home2.png" alt="Norway" style="width:100%; height:100%">
+                <div class="carousel-caption">
+                    <div class="centered" @*style="margin-bottom:200px;*@>
+                        <h1 style="color:white">There are ways to give beyond donating money</h1>
+                        <hr class="style-three">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="~/Images/clothm2.jpg" alt="Norway" style="width:100%; height:100%">
+                <div class="carousel-caption">
+                    <div>
+                        <h2 style="color:white">The clothes you no longer need, can help others </h2>
+                        <hr class="style-three">
+                        <p style="font-size:25px;">It’s better to donate old clothes than accumulate.    </p>
+                    </div>
+                    @Html.ActionLink("Learn More", "Clothm", "Clothes", null, new { value = "98998", id = "2", @class = "my-class btn btn-success btn-lg" })
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="~/Images/hometime.jpg" style="width:100%; height:100%">
+                <div class="carousel-caption">
+                    <div>
+                        <h2 style="color:white;">"We make a living by what we get, but we make a life by what we give"</h2>
+                        <p style="font-size:30px; font-family: Arial Black , Gadget, sans-serif;">---Winston Churchill</p>
+                        <hr class="style-three">
+                        <p style="font-size:25px;">Donate your time today.  </p>
+                    </div>
+                    @Html.ActionLink("Learn More", "Time", "Viccharities", null, new { @class = "my-class btn btn-success btn-lg", value = "98998", id = "2" })
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="~/Images/bloodm2.jpg" alt="Norway" style="width:100%; height:100%" />
+                <div class="carousel-caption">
+                    <div>
+                        <h2 style="color:white">You don’t have to be a doctor to save lives</h2>
+                        <hr class="style-three">
+                        <p style="color:white; font-size:25px">You can save lives by giving blood.</p>
+                    </div>
+                    <div class="text-center">@Html.ActionLink("Learn More", "Bloodm", "Bloods", null, new { value = "98998", id = "2", @class = "my-class btn btn-success btn-lg" })</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
+
+
+    <div class="row">
+        <div class="col-sm-3">
+        </div>
+        <div class="text-center col-sm-6" sstyle="margin-top:70px;">
+            <h2>Charity begins at home</h2>
+            <h2>and should not end there.</h2>
+
+            <br>
+            <p>At Do your Bit, we believe that charity in any form can be the most self-less thing you can do for someone. @*Deeds of giving are the very foundations of the world.*@ Be the change you wish to see in the world! </p>
+            @*<p>At Do your Bit, we believe that charity in any form can be the most self-less thing </p>
+                <p>you can do for someone. Deeds of giving are the very foundations of the world. </p>
+                <p>You can make the world a better place by getting involved.  </p>
+                <p>The change you wish to see in the world! </p>*@
+            <br>
+            <hr class="style-two">
+            <h2 style="margin-top:70px;">Do your bit today!</h2>
+
+            <br>
+            @*<Button class="btn-success btn-lg">@Html.ActionLink("Donate now!", "Clothm", "Clothes", new { value = "98998", id = "2", @class = "btn btn-success btn-lg" },  null )</Button>*@
+            @*<a class="btn-secondary btn-lg">@Html.ActionLink("Donate Clothes!", "Clothm", "Clothes", new { value = "98998", id = "2", @class = "btn btn-success btn-lg" }, null)</a>*@
+        </div>
+        <div class="col-sm-3">
+        </div>
+    </div>
+
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img src="~/Images/icon-clothes2.jpg" alt="Norway" style="width:70%; height:180px">
+                </div>
+                <h3 class="header smallest text-center" style="margin-top:30px">Donate Clothes</h3>
+                <div class="text-center">
+                    <p>Find how and where </p>
+                    <p>to donate clothes.</p>
+
+                </div>
+                <div class="text-center">
+                    @Html.ActionLink("Learn More", "Clothm", "Clothes", null, new { value = "98998", id = "2", @class = "my-class btn btn-success btn-lg" })
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img src="~/Images/icon-blood2.jpg" alt="Norway" style="width:50%; height:180px">
+                </div>
+                <h3 class="header smallest text-center" style="margin-top:30px">Give Blood</h3>
+                <div class="text-center">
+                    <p>Learn about eligibility and </p>
+                    <p>   blood donation process</p>
+                </div>
+                <div class="text-center">@Html.ActionLink("Learn More", "Bloodm", "Bloods", null, new { value = "98998", id = "2", @class = "my-class btn btn-success btn-lg" })</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img src="~/Images/icon-clock2.jpg" alt="Norway" style="width:50%; height:180px">
+                </div>
+                <h3 class="header smallest text-center" style="margin-top:30px">Donate Time</h3>
+                <div class="text-center">
+                    <p>Find out more about why you </p>
+                    <p>should volunteer and where.</p>
+                </div>
+
+
+                <div class="text-center">@Html.ActionLink("Learn More", "Time", "Viccharities", null, new { @class = "my-class btn btn-success btn-lg", value = "98998", id = "2" })</div>
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div>
+        <div class="float-button1">@Html.ActionLink("donate clothes", "List", "Clothes", null, new { @style = "align: right", @class = "my-class btn btn-success btn-lg", value = "98998", id = "2" })</div>
+        <div class="float-button2" style="margin-top:50px;">@Html.ActionLink("Donate time   ", "List", "Viccharities", null, new { @style = "align: right", @class = "my-class btn btn-success btn-lg", value = "98998", id = "2" })</div>
+        <div class="float-button3" style="margin-top:100px;">@Html.ActionLink("Give blood    ", "List", "Bloods", null, new { @style = "align: right", @class = "my-class btn btn-success btn-lg", value = "98998", id = "2" })</div>
+
+    </div>
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Return to the top" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+
+        $('#back-to-top').tooltip('show');
+
+    });
+</script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!--google translate-->
+@*<div id="google_translate_element" value="translat"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({ pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>*@
